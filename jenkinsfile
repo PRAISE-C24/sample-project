@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-            checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'Github-cred', url: 'https://github.com/PRAISE-C24/sample-project.git']])
-            }
-        }
-
         stage('Hello') {
             steps {
                 echo 'Hello World'
