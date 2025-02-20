@@ -8,59 +8,9 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                echo 'Hello, You are welcome!!'
-            }
-        }
-
-        stage('Maven version') {
-            steps {
+                echo 'Hello, You are welcome!!' 
                 sh 'mvn --version'
-
             }
-        }
-
-        stage('Clean') {
-            steps {
-                script {
-                    sh 'mvn clean'
-                }
-            }
-        }
-
-        stage('Validate') {
-            steps {
-                script {
-                    sh 'mvn validate'
-                }
-            }
-        }
-
-        stage('Compile') {
-            steps {
-                script {
-                    sh 'mvn compile'
-                }
-            }
-        }
-    }
-
-    post {
-        success{
-            echo 'Pipeline execution was successful'
-            echo "Job '${JOB_NAME}' (${BUILD_NUMBER}) has been executed Successfully",
-            echo "You can will find the job here --> ${BUILD_URL}"
-        }
-
-        failure {
-            echo 'Pipeline execution failed'
-            echo "Job '${JOB_NAME}' (${BUILD_NUMBER}) has failed on execution",
-            echo "You can will find the job here --> ${BUILD_URL}"
-        }
-
-        always {
-            script {
-                echo 'Pipeline execution completed.'
-            }
-        }
-    }
+        }  
+     }
 }
