@@ -1,58 +1,10 @@
 pipeline {
     agent any
-    
-   tools {
-    maven 'Maven 3.9.9'
-}
 
     stages {
         stage('Hello') {
             steps {
                 echo 'Hello World'
-            }
-        }
-        
-        stage('Clean') {
-            steps {
-                script {
-                    echo 'mvn clean'
-                    
-                    sh 'mvn --version'
-                    
-                }
-            }
-        }
-
-        stage('Validate') {
-            steps {
-                script {
-                    echo 'mvn validate'
-                }
-            }
-        }
-
-        stage('Compile') {
-            steps {
-                script {
-                    echo 'mvn compile'
-                }
-            }
-        }
-    }
-
-    post {
-        
-        success{
-            echo 'Pipeline execution was successful'
-        }
-
-        failure {
-            echo 'Pipeline execution failed'
-        }
-
-        always {
-            script {
-                echo 'Pipeline execution completed.'
             }
         }
     }
