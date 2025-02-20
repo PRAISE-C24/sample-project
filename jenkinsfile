@@ -1,0 +1,62 @@
+pipeline {
+    agent any
+
+    tools {
+            maven '3.9.9'
+        }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    checkout scmGit(
+                    branches: [[name: '*/main']],
+                    extensions: [],
+                    userRemoteConfigs: [
+                    [credentialsId: 'Github-cred', url: 'https://github.com/PRAISE-C24/sample-project.git']
+                    ])
+                }
+            }
+        }
+
+        stage('Clean') {
+            steps {
+                script {
+                    sh 'mvn clean'
+                }
+            }
+        }
+
+        stage('Validate') {
+            steps {
+                script {
+                    sh 'mvn validate'
+                }
+            }
+        }
+
+        stage('Compile') {
+            steps {
+                script {
+                    sh 'mvn compile'
+                }
+            }
+        }
+    }
+
+    post {
+        success{
+            echo 'Pipeline execution was successful'
+        }
+
+        failure {
+            echo 'Pipeline execution failed'
+        }
+
+        always {
+            script {
+                echo 'Pipeline execution completed.'
+            }
+        }
+    }
+}
