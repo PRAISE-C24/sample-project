@@ -5,12 +5,42 @@ pipeline {
       maven 'Maven 3.9.9'
     }
 
-    stages {
+   stages {
         stage('Hello') {
             steps {
-                echo 'Hello, You are welcome!!' 
-                sh 'mvn --version'
+                echo 'Hello, You are welcome!!'
             }
-        }  
-     }
+        }
+
+        stage('Maven version') {
+            steps {
+                sh 'mvn --version'
+
+            }
+        }
+
+        stage('Clean') {
+            steps {
+                script {
+                    sh 'mvn clean'
+                }
+            }
+        }
+
+        stage('Validate') {
+            steps {
+                script {
+                    sh 'mvn validate'
+                }
+            }
+        }
+
+        stage('Compile') {
+            steps {
+                script {
+                    sh 'mvn compile'
+                }
+            }
+        }
+    }
 }
