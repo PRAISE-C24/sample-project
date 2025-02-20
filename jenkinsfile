@@ -1,28 +1,24 @@
 pipeline {
     agent any
-
-    tools {
-      maven 'Maven 3.9.9'
-    }
+    
+   tools {
+    maven 'Maven 3.9.9'
+}
 
     stages {
-        stage('Checkout') {
+        stage('Hello') {
             steps {
-                script {
-                    checkout scmGit(
-                    branches: [[name: '*/main']],
-                    extensions: [],
-                    userRemoteConfigs: [
-                    [credentialsId: 'Github-cred', url: 'https://github.com/PRAISE-C24/sample-project.git']
-                    ])
-                }
+                echo 'Hello World'
             }
         }
-
+        
         stage('Clean') {
             steps {
                 script {
-                    sh 'mvn clean'
+                    echo 'mvn clean'
+                    
+                    sh 'mvn --version'
+                    
                 }
             }
         }
@@ -30,7 +26,7 @@ pipeline {
         stage('Validate') {
             steps {
                 script {
-                    sh 'mvn validate'
+                    echo 'mvn validate'
                 }
             }
         }
@@ -38,13 +34,14 @@ pipeline {
         stage('Compile') {
             steps {
                 script {
-                    sh 'mvn compile'
+                    echo 'mvn compile'
                 }
             }
         }
     }
 
     post {
+        
         success{
             echo 'Pipeline execution was successful'
         }
