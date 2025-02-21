@@ -52,12 +52,17 @@ pipeline {
    post {
        success{
            script {
-              echo 'Pipeline execution was successful'
+              echo "Pipeline execution was successful"
+              echo "${env.JOB_NAME}"
+              echo "${env.BUILD_URL}"
+
            }
        }
        failure {
             script {
                echo 'Pipeline execution failed'
+               echo "${env.JOB_NAME}"
+               echo "${env.BUILD_URL}"
             }
        }
 
