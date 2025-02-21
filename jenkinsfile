@@ -53,16 +53,16 @@ pipeline {
        success{
            script {
               echo "Pipeline execution was successful"
-              echo "${env.JOB_NAME}"
-              echo "${env.BUILD_URL}"
+              echo "Job Name is --> ${env.JOB_NAME}"
+              echo "Build Url is --> ${env.BUILD_URL}"
 
            }
        }
        failure {
             script {
                echo 'Pipeline execution failed'
-               echo "${env.JOB_NAME}"
-               echo "${env.BUILD_URL}"
+               echo "Job Name is --> ${env.JOB_NAME}"
+               echo "Build Url is --> ${env.BUILD_URL}"
             }
        }
 
