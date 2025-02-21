@@ -53,15 +53,15 @@ pipeline {
        success{
            script {
               echo 'Pipeline execution was successful'
-              echo "Job '${env.JOB_NAME}' '${env.BUILD_NUMBER}' has been executed Successfully",
-              echo "You can will find the job here --> '${env.BUILD_URL}'"
+              echo "Job "${env.JOB_NAME}" "${env.BUILD_NUMBER}" has been executed Successfully",
+              echo "You can will find the job here --> "${env.BUILD_URL}""
            }
        }
        failure {
             script {
                echo 'Pipeline execution failed'
-               echo "Job '${env.JOB_NAME}' '${evn.BUILD_NUMBER}' has failed on execution",
-               echo "You can will find the job here --> '${env.BUILD_URL}'"
+               echo "Job "${env.JOB_NAME}" "${evn.BUILD_NUMBER}" has failed on execution",
+               echo "You can will find the job here --> "${env.BUILD_URL}""
             }
        }
 
