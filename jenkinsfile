@@ -6,16 +6,10 @@ pipeline {
     }
 
    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello, You are welcome!!'
-            }
-        }
-
-        stage('Maven version') {
+        stage('Tools versions') {
             steps {
                 sh 'mvn --version'
-
+                sh 'java -version'
             }
         }
 
@@ -23,10 +17,7 @@ pipeline {
             steps {
                 script {
                     sh 'mvn clean'
-                }
-
-                script {
-                     sh 'mvn validate'
+                    sh 'mvn validate'
                 }
             }
         }
@@ -52,17 +43,16 @@ pipeline {
    post {
        success{
            script {
-              echo "Pipeline execution was successful"
               echo "Job Name is --> ${env.JOB_NAME}"
               echo "Build Url is --> ${env.BUILD_URL}"
-
+              echo "Pipeline execution was successful"
            }
        }
        failure {
             script {
-               echo 'Pipeline execution failed'
                echo "Job Name is --> ${env.JOB_NAME}"
                echo "Build Url is --> ${env.BUILD_URL}"
+               echo 'Pipeline execution failed'
             }
        }
 
