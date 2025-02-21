@@ -19,33 +19,22 @@ pipeline {
             }
         }
 
-        stage('Clean') {
+        stage('Clean and Validate') {
             steps {
                 script {
                     sh 'mvn clean'
                 }
-            }
-        }
 
-        stage('Validate') {
-            steps {
                 script {
-                    sh 'mvn validate'
+                     sh 'mvn validate'
                 }
             }
         }
 
-        stage('Compile') {
+        stage('Compile and Test') {
             steps {
                 script {
                     sh 'mvn compile'
-                }
-            }
-        }
-
-        stage('Test') {
-            steps {
-                script {
                     sh 'mvn test'
                 }
             }
@@ -64,23 +53,18 @@ pipeline {
        success{
            script {
               echo 'Pipeline execution was successful'
-              echo "Job '${JOB_NAME}' (${BUILD_NUMBER}) has been executed Successfully",
-              echo "You can will find the job here --> ${BUILD_URL}"
+              echo "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) has been executed Successfully",
+              echo "You can will find the job here --> ${env.BUILD_URL}"
            }
        }
        failure {
             script {
                echo 'Pipeline execution failed'
-               echo "Job '${JOB_NAME}' (${BUILD_NUMBER}) has failed on execution",
-               echo "You can will find the job here --> ${BUILD_URL}"
+               echo "Job '${env.JOB_NAME}' (${evn.BUILD_NUMBER}) has failed on execution",
+               echo "You can will find the job here --> ${env.BUILD_URL}"
             }
        }
 
-       always {
-           script {
-               echo 'Pipeline execution completed.'
-           }
-       }
    }
 
 }
