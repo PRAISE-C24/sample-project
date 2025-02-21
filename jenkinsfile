@@ -62,15 +62,18 @@ pipeline {
 
    post {
        success{
-           echo 'Pipeline execution was successful'
-           echo "Job '${JOB_NAME}' (${BUILD_NUMBER}) has been executed Successfully",
-           echo "You can will find the job here --> ${BUILD_URL}"
+           script {
+              echo 'Pipeline execution was successful'
+              echo "Job '${JOB_NAME}' (${BUILD_NUMBER}) has been executed Successfully",
+              echo "You can will find the job here --> ${BUILD_URL}"
+           }
        }
-
        failure {
-           echo 'Pipeline execution failed'
-           echo "Job '${JOB_NAME}' (${BUILD_NUMBER}) has failed on execution",
-           echo "You can will find the job here --> ${BUILD_URL}"
+            script {
+               echo 'Pipeline execution failed'
+               echo "Job '${JOB_NAME}' (${BUILD_NUMBER}) has failed on execution",
+               echo "You can will find the job here --> ${BUILD_URL}"
+            }
        }
 
        always {
